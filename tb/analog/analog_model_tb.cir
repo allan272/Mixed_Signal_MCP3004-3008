@@ -1,0 +1,140 @@
+* =============================================================================
+* File: tb/analog/analog_model_tb.cir
+* Description: SPICE Testbench for Educational SAR ADC Analogue Behavioural Models
+* Simulator: LTspice (Batch mode: LTspice.exe -b -ascii analog_model_tb.cir)
+* =============================================================================
+
+* -----------------------------------------------------------------------------
+* Global Supplies and References
+* -----------------------------------------------------------------------------
+Vdd vdd 0 DC 5.0
+Vref vref 0 DC 5.0
+Vss vss 0 DC 0.0
+
+* -----------------------------------------------------------------------------
+* 8 Input Channel DC Test Voltages (CH0 to CH7)
+* -----------------------------------------------------------------------------
+Vch0 ch0 0 DC 0.500
+Vch1 ch1 0 DC 1.000
+Vch2 ch2 0 DC 1.500
+Vch3 ch3 0 DC 2.000
+Vch4 ch4 0 DC 2.500
+Vch5 ch5 0 DC 3.000
+Vch6 ch6 0 DC 3.500
+Vch7 ch7 0 DC 4.000
+
+* -----------------------------------------------------------------------------
+* Channel Selection Signals (3-bit Gray / Binary counter over 0..40us)
+* Step 0 (0-5u): 000 (CH0=0.5V)
+* Step 1 (5-10u): 001 (CH1=1.0V)
+* Step 2 (10-15u): 010 (CH2=1.5V)
+* Step 3 (15-20u): 011 (CH3=2.0V)
+* Step 4 (20-25u): 100 (CH4=2.5V)
+* Step 5 (25-30u): 101 (CH5=3.0V)
+* Step 6 (30-35u): 110 (CH6=3.5V)
+* Step 7 (35-40u): 111 (CH7=4.0V)
+* -----------------------------------------------------------------------------
+Vsel0 sel0 0 PWL(0u 0V 4.99u 0V 5u 5V 9.99u 5V 10u 0V 14.99u 0V 15u 5V 19.99u 5V 20u 0V 24.99u 0V 25u 5V 29.99u 5V 30u 0V 34.99u 0V 35u 5V 80u 5V)
+Vsel1 sel1 0 PWL(0u 0V 9.99u 0V 10u 5V 19.99u 5V 20u 0V 29.99u 0V 30u 5V 80u 5V)
+Vsel2 sel2 0 PWL(0u 0V 19.99u 0V 20u 5V 80u 5V)
+
+* -----------------------------------------------------------------------------
+* Behavioural 8:1 MUX
+* -----------------------------------------------------------------------------
+.model SW_MOD SW(Ron=100 Roff=1e9 Vt=2.5)
+
+* Decoded channel enables
+B_en0 en0 0 V= (V(sel2)<2.5 & V(sel1)<2.5 & V(sel0)<2.5) ? 5.0 : 0.0
+B_en1 en1 0 V= (V(sel2)<2.5 & V(sel1)<2.5 & V(sel0)>2.5) ? 5.0 : 0.0
+B_en2 en2 0 V= (V(sel2)<2.5 & V(sel1)>2.5 & V(sel0)<2.5) ? 5.0 : 0.0
+B_en3 en3 0 V= (V(sel2)<2.5 & V(sel1)>2.5 & V(sel0)>2.5) ? 5.0 : 0.0
+B_en4 en4 0 V= (V(sel2)>2.5 & V(sel1)<2.5 & V(sel0)<2.5) ? 5.0 : 0.0
+B_en5 en5 0 V= (V(sel2)>2.5 & V(sel1)<2.5 & V(sel0)>2.5) ? 5.0 : 0.0
+B_en6 en6 0 V= (V(sel2)>2.5 & V(sel1)>2.5 & V(sel0)<2.5) ? 5.0 : 0.0
+B_en7 en7 0 V= (V(sel2)>2.5 & V(sel1)>2.5 & V(sel0)>2.5) ? 5.0 : 0.0
+
+S0 ch0 mux_out en0 0 SW_MOD
+S1 ch1 mux_out en1 0 SW_MOD
+S2 ch2 mux_out en2 0 SW_MOD
+S3 ch3 mux_out en3 0 SW_MOD
+S4 ch4 mux_out en4 0 SW_MOD
+S5 ch5 mux_out en5 0 SW_MOD
+S6 ch6 mux_out en6 0 SW_MOD
+S7 ch7 mux_out en7 0 SW_MOD
+C_mux mux_out 0 1p
+
+* -----------------------------------------------------------------------------
+* Sample and Hold Unit
+* Track phase: sample_en = 5V. Hold phase: sample_en = 0V.
+* Track during 0u..23u (channel 4 = 2.5V selected between 20u..25u), hold thereafter.
+* -----------------------------------------------------------------------------
+Vsample sample_en 0 PWL(0u 5V 23u 5V 23.01u 0V 80u 0V)
+S_sh mux_out v_held sample_en 0 SW_MOD
+C_hold v_held 0 10p
+R_leak v_held 0 1e12
+
+* -----------------------------------------------------------------------------
+* 10-Bit Behavioural DAC
+* Tests codes: 0, 1, 256, 512, 768, 1023
+* -----------------------------------------------------------------------------
+Vdac_code_val code_in 0 PWL(
++ 0u    0
++ 49u   0
++ 50u   1
++ 54u   1
++ 55u   256
++ 59u   256
++ 60u   512
++ 64u   512
++ 65u   768
++ 69u   768
++ 70u   1023
++ 80u   1023)
+
+* DAC output: Vdac = Vref * (code / 1024.0)
+B_dac vdac 0 V= V(vref) * (V(code_in) / 1024.0)
+R_dac vdac 0 10k
+
+* -----------------------------------------------------------------------------
+* Behavioural Comparator
+* Compares v_held against vdac
+* cmp_out = 5.0V if v_held >= vdac, else 0.0V
+* -----------------------------------------------------------------------------
+B_cmp cmp_out 0 V= (V(v_held) >= V(vdac)) ? 5.0 : 0.0
+C_cmp cmp_out 0 1p
+
+* -----------------------------------------------------------------------------
+* Simulation Control & Measurements
+* -----------------------------------------------------------------------------
+.tran 0 80u 0 50n
+.print tran V(mux_out) V(v_held) V(vdac) V(cmp_out)
+
+* Measurements for automated validation
+.meas tran vmux_ch0 FIND V(mux_out) AT=2.5u
+.meas tran vmux_ch1 FIND V(mux_out) AT=7.5u
+.meas tran vmux_ch2 FIND V(mux_out) AT=12.5u
+.meas tran vmux_ch3 FIND V(mux_out) AT=17.5u
+.meas tran vmux_ch4 FIND V(mux_out) AT=22.5u
+.meas tran vmux_ch5 FIND V(mux_out) AT=27.5u
+.meas tran vmux_ch6 FIND V(mux_out) AT=32.5u
+.meas tran vmux_ch7 FIND V(mux_out) AT=37.5u
+
+* Sample & Hold hold verification (sampled 2.5V, held at 45u and 75u)
+.meas tran vheld_track FIND V(v_held) AT=24u
+.meas tran vheld_hold1 FIND V(v_held) AT=45u
+.meas tran vheld_hold2 FIND V(v_held) AT=75u
+
+* DAC Output Measurements
+.meas tran vdac_code0    FIND V(vdac) AT=48u
+.meas tran vdac_code1    FIND V(vdac) AT=52u
+.meas tran vdac_code256  FIND V(vdac) AT=57u
+.meas tran vdac_code512  FIND V(vdac) AT=62u
+.meas tran vdac_code768  FIND V(vdac) AT=67u
+.meas tran vdac_code1023 FIND V(vdac) AT=75u
+
+* Comparator Decision Measurements against Held 2.500V
+.meas tran cmp_at_code256 FIND V(cmp_out) AT=57u
+.meas tran cmp_at_code512 FIND V(cmp_out) AT=62u
+.meas tran cmp_at_code768 FIND V(cmp_out) AT=67u
+
+.end

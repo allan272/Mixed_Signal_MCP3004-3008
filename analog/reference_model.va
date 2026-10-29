@@ -1,0 +1,28 @@
+//=============================================================================
+// File: analog/reference_model.va
+// Description: Stable 5.0V Precision Voltage Reference Model in Verilog-A
+// Standard: Verilog-A (IEEE 1800 / LRM 2.4)
+//=============================================================================
+
+`include "disciplines.vams"
+`include "constants.vams"
+
+module reference_model(vref_out, agnd);
+  output vref_out;
+  input  agnd;
+  electrical vref_out, agnd;
+
+  parameter real vref_nom = 5.000;    // Nominal reference voltage (5.0V)
+  parameter real tc1      = 0.0;      // Linear temperature coefficient (V/K)
+  parameter real tnom     = 300.15;   // Nominal temperature (27 deg C)
+  parameter real r_out    = 0.1;      // Output buffer impedance (Ohms)
+
+  real v_ref_actual;
+
+  analog begin
+    v_ref_actual = vref_nom * (1.0 + tc1 * ($temperature - tnom));
+    V(vref_out, agnd) <+ v_ref_actual;
+  end
+
+endmodule
+

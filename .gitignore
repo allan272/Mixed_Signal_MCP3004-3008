@@ -1,0 +1,25 @@
+# Build artifacts and temporary simulation dumps
+*.vvp
+*.vcd
+*.fst
+*.raw
+*.op.raw
+*.log
+*.tmp
+tb/analog/*.db
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# OpenLane runs (keep results/layout and gds/)
+runs/
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+

@@ -1,0 +1,44 @@
+//=============================================================================
+// File: analog/dac_model.va
+// Description: 10-Bit Behavioural DAC in Verilog-A
+// Transfer Function: V_DAC = V_REF * (D / 1024.0)
+// Standard: Verilog-A (IEEE 1800 / LRM 2.4)
+//=============================================================================
+
+`include "disciplines.vams"
+`include "constants.vams"
+
+module dac_model(d0, d1, d2, d3, d4, d5, d6, d7, d8, d9, vref, vout, agnd);
+  input d0, d1, d2, d3, d4, d5, d6, d7, d8, d9, vref, agnd;
+  output vout;
+  electrical d0, d1, d2, d3, d4, d5, d6, d7, d8, d9, vref, vout, agnd;
+
+  parameter real vth = 2.5;         // Logic decision threshold (V)
+  parameter real rout = 50.0;       // Output impedance (Ohms)
+  parameter real settling_tau = 2e-9; // RC settling time constant (2 ns)
+
+  integer code;
+  real v_target;
+
+  analog begin
+    // Decode 10-bit unsigned binary input code
+    code = (V(d9, agnd) > vth ? 512 : 0) +
+           (V(d8, agnd) > vth ? 256 : 0) +
+           (V(d7, agnd) > vth ? 128 : 0) +
+           (V(d6, agnd) > vth ?  64 : 0) +
+           (V(d5, agnd) > vth ?  32 : 0) +
+           (V(d4, agnd) > vth ?  16 : 0) +
+           (V(d3, agnd) > vth ?   8 : 0) +
+           (V(d2, agnd) > vth ?   4 : 0) +
+           (V(d1, agnd) > vth ?   2 : 0) +
+           (V(d0, agnd) > vth ?   1 : 0);
+
+    // Ideal linear DAC transfer equation
+    v_target = V(vref, agnd) * (code / 1024.0);
+
+    // Continuous output voltage with first-order settling dynamics
+    V(vout, agnd) <+ laplace_nd(v_target, {1.0}, {1.0, settling_tau});
+  end
+
+endmodule
+

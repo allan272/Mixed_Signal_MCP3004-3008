@@ -1,0 +1,38 @@
+//=============================================================================
+// File: analog/sample_hold.va
+// Description: Sample-and-Hold Behavioural Model in Verilog-A
+// Standard: Verilog-A (IEEE 1800 / LRM 2.4)
+//=============================================================================
+
+`include "disciplines.vams"
+`include "constants.vams"
+
+module sample_hold(in, sample_en, out, agnd);
+  input in, sample_en, agnd;
+  output out;
+  electrical in, sample_en, out, agnd;
+
+  parameter real r_switch = 100.0; // Track switch resistance (Ohms)
+  parameter real c_hold   = 10.0e-12; // Sampling capacitor (10 pF)
+  parameter real vth      = 2.5;   // Control threshold (V)
+  parameter real droop_r  = 1.0e12; // Hold leakage resistance (Ohms)
+
+  real held_voltage;
+
+  analog begin
+    @(initial_step) begin
+      held_voltage = 0.0;
+    end
+
+    if (V(sample_en) > vth) begin
+      // Track mode: sample input voltage
+      held_voltage = V(in, agnd);
+      V(out, agnd) <+ held_voltage;
+    end else begin
+      // Hold mode: freeze sampled voltage with ideal or droop-limited behavior
+      V(out, agnd) <+ held_voltage;
+    end
+  end
+
+endmodule
+

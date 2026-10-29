@@ -1,0 +1,5121 @@
+{
+  "creator": "Yosys 0.46 (git sha1 e97731b9dda91fa5fa53ed87df7c34163ba59a41, clang++ 17.0.6 -fPIC -O3)",
+  "modules": {
+    "adc_top": {
+      "attributes": {
+        "hdlname": "adc_top",
+        "dynports": "00000000000000000000000000000001",
+        "top": "00000000000000000000000000000001",
+        "src": "/work/rtl/adc_top.sv:14.1-116.10"
+      },
+      "parameter_default_values": {
+        "ADC_BITS": "00000000000000000000000000001010",
+        "CH_ADDR_BITS": "00000000000000000000000000000011",
+        "adc_pkg::ADC_BITS": "00000000000000000000000000001010",
+        "adc_pkg::CH_ADDR_BITS": "00000000000000000000000000000011",
+        "adc_pkg::MISO_BUSY_BIT": "00000000000000000000000000001110",
+        "adc_pkg::MISO_CH_LSB": "00000000000000000000000000001010",
+        "adc_pkg::MISO_CH_MSB": "00000000000000000000000000001100",
+        "adc_pkg::MISO_DATA_LSB": "00000000000000000000000000000000",
+        "adc_pkg::MISO_DATA_MSB": "00000000000000000000000000001001",
+        "adc_pkg::MISO_ERR_BIT": "00000000000000000000000000001101",
+        "adc_pkg::MISO_READY_BIT": "00000000000000000000000000001111",
+        "adc_pkg::MOSI_AUTO_START_BIT": "00000000000000000000000000001010",
+        "adc_pkg::MOSI_CH_LSB": "00000000000000000000000000001011",
+        "adc_pkg::MOSI_CH_MSB": "00000000000000000000000000001101",
+        "adc_pkg::MOSI_SGL_DIFF_BIT": "00000000000000000000000000001110",
+        "adc_pkg::MOSI_START_BIT": "00000000000000000000000000001111",
+        "adc_pkg::NUM_CHANNELS": "00000000000000000000000000001000",
+        "adc_pkg::SPI_FRAME_BITS": "00000000000000000000000000010000",
+        "adc_pkg::VREF_MV": "00000000000000000001001110001000"
+      },
+      "ports": {
+        "clk": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "rst_n": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "sclk": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "cs_n": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "mosi": {
+          "direction": "input",
+          "bits": [ 6 ]
+        },
+        "miso": {
+          "direction": "output",
+          "bits": [ 7 ]
+        },
+        "sample_en": {
+          "direction": "output",
+          "bits": [ 8 ]
+        },
+        "channel_sel": {
+          "direction": "output",
+          "bits": [ 9, 10, 11 ]
+        },
+        "dac_code": {
+          "direction": "output",
+          "bits": [ 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 ]
+        },
+        "cmp_out": {
+          "direction": "input",
+          "bits": [ 22 ]
+        },
+        "busy": {
+          "direction": "output",
+          "bits": [ 23 ]
+        },
+        "conv_done": {
+          "direction": "output",
+          "bits": [ 24 ]
+        },
+        "result_data": {
+          "direction": "output",
+          "bits": [ 25, 26, 27, 28, 29, 30, 31, 32, 33, 34 ]
+        },
+        "result_channel": {
+          "direction": "output",
+          "bits": [ 35, 36, 37 ]
+        },
+        "result_valid": {
+          "direction": "output",
+          "bits": [ 38 ]
+        },
+        "err_flag": {
+          "direction": "output",
+          "bits": [ 39 ]
+        }
+      },
+      "cells": {
+        "$flatten\\u_result_reg.$procdff$342": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "0000000000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/result_register.sv:29.3-39.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 40, 41, 42, 43, 44, 45, 46, 47, 48, 49 ],
+            "Q": [ 25, 26, 27, 28, 29, 30, 31, 32, 33, 34 ]
+          }
+        },
+        "$flatten\\u_result_reg.$procdff$347": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/result_register.sv:29.3-39.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 50, 51, 52 ],
+            "Q": [ 35, 36, 37 ]
+          }
+        },
+        "$flatten\\u_result_reg.$procdff$352": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "0",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/result_register.sv:29.3-39.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 53 ],
+            "Q": [ 38 ]
+          }
+        },
+        "$flatten\\u_result_reg.$procmux$251": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/result_register.sv:34.18-34.26|/work/rtl/result_register.sv:34.14-38.8"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 38 ],
+            "B": [ "1" ],
+            "S": [ 24 ],
+            "Y": [ 53 ]
+          }
+        },
+        "$flatten\\u_result_reg.$procmux$253": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+            "src": "/work/rtl/result_register.sv:34.18-34.26|/work/rtl/result_register.sv:34.14-38.8"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 35, 36, 37 ],
+            "B": [ 9, 10, 11 ],
+            "S": [ 24 ],
+            "Y": [ 50, 51, 52 ]
+          }
+        },
+        "$flatten\\u_result_reg.$procmux$255": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "src": "/work/rtl/result_register.sv:34.18-34.26|/work/rtl/result_register.sv:34.14-38.8"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 25, 26, 27, 28, 29, 30, 31, 32, 33, 34 ],
+            "B": [ 54, 55, 56, 57, 58, 59, 60, 61, 62, 63 ],
+            "S": [ 24 ],
+            "Y": [ 40, 41, 42, 43, 44, 45, 46, 47, 48, 49 ]
+          }
+        },
+        "$flatten\\u_sar_core.$eq$/work/rtl/sar_controller.sv:79$44": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_controller.sv:79.11-79.28"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "1", "0", "1" ],
+            "Y": [ 68 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procdff$332": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "0000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:72.3-83.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 69, 70, 71, 72 ],
+            "Q": [ 64, 65, 66, 67 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procdff$337": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "0000000000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:72.3-83.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 73, 74, 75, 76, 77, 78, 79, 80, 81, 82 ],
+            "Q": [ 54, 55, 56, 57, 58, 59, 60, 61, 62, 63 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$100": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "x", "x", "x", "x" ],
+            "B": [ 83, 84, 85, 86 ],
+            "S": [ 87 ],
+            "Y": [ 88, 89, 90, 91 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$101_CMP0": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "Y": [ 87 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$116": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:101.13-101.18|/work/rtl/sar_controller.sv:101.9-104.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0" ],
+            "B": [ "1" ],
+            "S": [ 92 ],
+            "Y": [ 93 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$118": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "x" ],
+            "B": [ 93 ],
+            "S": [ 94 ],
+            "Y": [ 95 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$119_CMP0": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "Y": [ 94 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$133": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0" ],
+            "B": [ 95 ],
+            "S": [ 96 ],
+            "Y": [ 97 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$134_CMP0": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "Y": [ 96 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$137": {
+          "hide_name": 1,
+          "type": "$pmux",
+          "parameters": {
+            "S_WIDTH": "00000000000000000000000000001100",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0", "0", "0" ],
+            "B": [ "0", "0", "1", "1", "1", "1", "0", "1", "0", "1", "0", "1", "1", "0", "0", "1", "0", "0", "0", "1", "1", "1", "1", "0", "0", "1", "1", "0", "1", "0", "1", "0", "0", "0", "1", "0", "1", "1", "0", "0", "0", "1", "0", "0", 88, 89, 90, 91 ],
+            "S": [ 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109 ],
+            "Y": [ 69, 70, 71, 72 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$138_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "1", "0", "1" ],
+            "Y": [ 98 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$139_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "1", "0", "1" ],
+            "Y": [ 99 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$140_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "0", "0", "1" ],
+            "Y": [ 100 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$141_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "0", "0", "1" ],
+            "Y": [ 101 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$142_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "1", "1", "0" ],
+            "Y": [ 102 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$143_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "1", "1", "0" ],
+            "Y": [ 103 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$144_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "0", "1", "0" ],
+            "Y": [ 104 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$145_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "0", "1", "0" ],
+            "Y": [ 105 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$146_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "1", "0", "0" ],
+            "Y": [ 106 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$147_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "1", "0", "0" ],
+            "Y": [ 107 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$148_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "0", "0", "0" ],
+            "Y": [ 108 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$149_CMP0": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "Y": [ 109 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$163": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "1" ],
+            "B": [ "0" ],
+            "S": [ 110 ],
+            "Y": [ 23 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$164_CMP0": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "Y": [ 110 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$168": {
+          "hide_name": 1,
+          "type": "$pmux",
+          "parameters": {
+            "S_WIDTH": "00000000000000000000000000001001",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0", "0", "0" ],
+            "B": [ "1", "0", "0", "0", "0", "1", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "1", "0", "1", "0", "0", "1", "1", "0", "1", "1", "1", "0", "0", "0", "0", "1", "1", "0", "0", "1" ],
+            "S": [ 111, 112, 113, 114, 115, 116, 117, 118, 119 ],
+            "Y": [ 120, 121, 122, 123 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$169_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "1", "0", "1" ],
+            "Y": [ 111 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$170_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "0", "0", "1" ],
+            "Y": [ 112 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$171_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "0", "0", "1" ],
+            "Y": [ 113 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$172_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "1", "1", "0" ],
+            "Y": [ 114 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$173_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "1", "1", "0" ],
+            "Y": [ 115 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$174_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "0", "1", "0" ],
+            "Y": [ 116 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$175_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "0", "1", "0" ],
+            "Y": [ 117 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$176_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "1", "0", "0" ],
+            "Y": [ 118 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$177_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "1", "0", "0" ],
+            "Y": [ 119 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$180": {
+          "hide_name": 1,
+          "type": "$pmux",
+          "parameters": {
+            "S_WIDTH": "00000000000000000000000000001010",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0" ],
+            "B": [ "1", "1", "1", "1", "1", "1", "1", "1", "1", "1" ],
+            "S": [ 124, 125, 126, 127, 128, 129, 130, 131, 132, 133 ],
+            "Y": [ 134 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$181_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "1", "0", "1" ],
+            "Y": [ 124 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$182_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "1", "0", "1" ],
+            "Y": [ 125 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$183_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "0", "0", "1" ],
+            "Y": [ 126 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$184_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "0", "0", "1" ],
+            "Y": [ 127 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$185_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "1", "1", "0" ],
+            "Y": [ 128 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$186_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "1", "1", "0" ],
+            "Y": [ 129 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$187_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "0", "1", "0" ],
+            "Y": [ 130 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$188_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "0", "1", "0" ],
+            "Y": [ 131 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$189_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "1", "0", "0" ],
+            "Y": [ 132 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$190_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "1", "0", "0" ],
+            "Y": [ 133 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$195": {
+          "hide_name": 1,
+          "type": "$pmux",
+          "parameters": {
+            "S_WIDTH": "00000000000000000000000000001001",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0", "0", "0" ],
+            "B": [ "1", "0", "0", "0", "0", "1", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "1", "0", "1", "0", "0", "1", "1", "0", "1", "1", "1", "0", "0", "0", "0", "1", "1", "0", "0", "1" ],
+            "S": [ 135, 136, 137, 138, 139, 140, 141, 142, 143 ],
+            "Y": [ 144, 145, 146, 147 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$196_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "0", "0", "1" ],
+            "Y": [ 135 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$197_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "0", "0", "1" ],
+            "Y": [ 136 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$198_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "1", "1", "0" ],
+            "Y": [ 137 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$199_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "1", "1", "0" ],
+            "Y": [ 138 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$200_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "0", "1", "0" ],
+            "Y": [ 139 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$201_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "0", "1", "0" ],
+            "Y": [ 140 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$202_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "1", "0", "0" ],
+            "Y": [ 141 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$203_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "1", "0", "0" ],
+            "Y": [ 142 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$204_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "0", "0", "0" ],
+            "Y": [ 143 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$208": {
+          "hide_name": 1,
+          "type": "$pmux",
+          "parameters": {
+            "S_WIDTH": "00000000000000000000000000001010",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0" ],
+            "B": [ "1", "1", "1", "1", "1", "1", "1", "1", "1", "1" ],
+            "S": [ 148, 149, 150, 151, 152, 153, 154, 155, 156, 157 ],
+            "Y": [ 158 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$209_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "1", "0", "1" ],
+            "Y": [ 148 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$210_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "0", "0", "1" ],
+            "Y": [ 149 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$211_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "0", "0", "1" ],
+            "Y": [ 150 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$212_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "1", "1", "0" ],
+            "Y": [ 151 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$213_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "1", "1", "0" ],
+            "Y": [ 152 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$214_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "0", "1", "0" ],
+            "Y": [ 153 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$215_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "0", "1", "0" ],
+            "Y": [ 154 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$216_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "1", "0", "0" ],
+            "Y": [ 155 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$217_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "1", "0", "0" ],
+            "Y": [ 156 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$218_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "0", "0", "0" ],
+            "Y": [ 157 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$233": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0" ],
+            "B": [ "1" ],
+            "S": [ 159 ],
+            "Y": [ 24 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$234_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "0", "0", "1", "1" ],
+            "Y": [ 159 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$247": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0" ],
+            "B": [ "1" ],
+            "S": [ 160 ],
+            "Y": [ 8 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$248_CMP0": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0|/work/rtl/sar_controller.sv:98.5-211.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "0", "0", "0" ],
+            "Y": [ 160 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$249": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_controller.sv:79.11-79.28|/work/rtl/sar_controller.sv:79.7-81.10"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 54, 55, 56, 57, 58, 59, 60, 61, 62, 63 ],
+            "B": [ 22, 13, 14, 15, 16, 17, 18, 19, 20, 21 ],
+            "S": [ 68 ],
+            "Y": [ 73, 74, 75, 76, 77, 78, 79, 80, 81, 82 ]
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$98": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_controller.sv:101.13-101.18|/work/rtl/sar_controller.sv:101.9-104.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 64, 65, 66, 67 ],
+            "B": [ "1", "0", "0", "0" ],
+            "S": [ 92 ],
+            "Y": [ 83, 84, 85, 86 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$and$/work/rtl/sar_register.sv:0$67": {
+          "hide_name": 1,
+          "type": "$and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001010",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001010",
+            "Y_WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 ],
+            "B": [ 161, 162, 163, 164, 165, 166, 167, 168, 169, 170 ],
+            "Y": [ 171, 172, 173, 174, 175, 176, 177, 178, 179, 180 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$and$/work/rtl/sar_register.sv:0$78": {
+          "hide_name": 1,
+          "type": "$and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001010",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001010",
+            "Y_WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 181, 182, 183, 184, 185, 186, 187, 188, 189, 190 ],
+            "B": [ 191, 192, 193, 194, 195, 196, 197, 198, 199, 200 ],
+            "Y": [ 201, 202, 203, 204, 205, 206, 207, 208, 209, 210 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$logic_and$/work/rtl/sar_register.sv:35$61": {
+          "hide_name": 1,
+          "type": "$logic_and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:35.11-35.43"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 134 ],
+            "B": [ 211 ],
+            "Y": [ 212 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$logic_and$/work/rtl/sar_register.sv:39$72": {
+          "hide_name": 1,
+          "type": "$logic_and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:39.11-39.45"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 158 ],
+            "B": [ 213 ],
+            "Y": [ 214 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$lt$/work/rtl/sar_register.sv:35$60": {
+          "hide_name": 1,
+          "type": "$lt",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000100000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:35.23-35.42"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 120, 121, 122, 123 ],
+            "B": [ "0", "1", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 211 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$lt$/work/rtl/sar_register.sv:39$71": {
+          "hide_name": 1,
+          "type": "$lt",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000100000",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:39.24-39.44"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 144, 145, 146, 147 ],
+            "B": [ "0", "1", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "Y": [ 213 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$neg$/work/rtl/sar_register.sv:0$64": {
+          "hide_name": 1,
+          "type": "$neg",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000001",
+            "A_WIDTH": "00000000000000000000000000000101",
+            "Y_WIDTH": "00000000000000000000000000000101"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 120, 121, 122, 123, "0" ],
+            "Y": [ 215, 216, 217, 218, 219 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$neg$/work/rtl/sar_register.sv:0$68": {
+          "hide_name": 1,
+          "type": "$neg",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000001",
+            "A_WIDTH": "00000000000000000000000000000101",
+            "Y_WIDTH": "00000000000000000000000000000101"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 120, 121, 122, 123, "0" ],
+            "Y": [ 220, 221, 222, 223, 224 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$neg$/work/rtl/sar_register.sv:0$75": {
+          "hide_name": 1,
+          "type": "$neg",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000001",
+            "A_WIDTH": "00000000000000000000000000000101",
+            "Y_WIDTH": "00000000000000000000000000000101"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 144, 145, 146, 147, "0" ],
+            "Y": [ 225, 226, 227, 228, 229 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$neg$/work/rtl/sar_register.sv:0$79": {
+          "hide_name": 1,
+          "type": "$neg",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000001",
+            "A_WIDTH": "00000000000000000000000000000101",
+            "Y_WIDTH": "00000000000000000000000000000101"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 144, 145, 146, 147, "0" ],
+            "Y": [ 230, 231, 232, 233, 234 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$not$/work/rtl/sar_register.sv:0$66": {
+          "hide_name": 1,
+          "type": "$not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001010",
+            "Y_WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 235, 236, 237, 238, 239, 240, 241, 242, 243, 244 ],
+            "Y": [ 161, 162, 163, 164, 165, 166, 167, 168, 169, 170 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$not$/work/rtl/sar_register.sv:0$77": {
+          "hide_name": 1,
+          "type": "$not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001010",
+            "Y_WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 245, 246, 247, 248, 249, 250, 251, 252, 253, 254 ],
+            "Y": [ 191, 192, 193, 194, 195, 196, 197, 198, 199, 200 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$or$/work/rtl/sar_register.sv:0$70": {
+          "hide_name": 1,
+          "type": "$or",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001010",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001010",
+            "Y_WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 171, 172, 173, 174, 175, 176, 177, 178, 179, 180 ],
+            "B": [ 255, 256, 257, 258, 259, 260, 261, 262, 263, 264 ],
+            "Y": [ 265, 266, 267, 268, 269, 270, 271, 272, 273, 274 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$or$/work/rtl/sar_register.sv:0$81": {
+          "hide_name": 1,
+          "type": "$or",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001010",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001010",
+            "Y_WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 201, 202, 203, 204, 205, 206, 207, 208, 209, 210 ],
+            "B": [ 275, 276, 277, 278, 279, 280, 281, 282, 283, 284 ],
+            "Y": [ 285, 286, 287, 288, 289, 290, 291, 292, 293, 294 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$procdff$427": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "0000000000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_register.sv:28.3-43.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 295, 296, 297, 298, 299, 300, 301, 302, 303, 304 ],
+            "Q": [ 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$procmux$291": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_register.sv:39.11-39.45|/work/rtl/sar_register.sv:39.7-41.10"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 181, 182, 183, 184, 185, 186, 187, 188, 189, 190 ],
+            "B": [ 285, 286, 287, 288, 289, 290, 291, 292, 293, 294 ],
+            "S": [ 214 ],
+            "Y": [ 305, 306, 307, 308, 309, 310, 311, 312, 313, 314 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$procmux$294": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_register.sv:31.18-31.23|/work/rtl/sar_register.sv:31.14-42.8"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 305, 306, 307, 308, 309, 310, 311, 312, 313, 314 ],
+            "B": [ "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" ],
+            "S": [ 97 ],
+            "Y": [ 315, 316, 317, 318, 319, 320, 321, 322, 323, 324 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$procmux$303": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_register.sv:35.11-35.43|/work/rtl/sar_register.sv:35.7-37.10"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 ],
+            "B": [ 265, 266, 267, 268, 269, 270, 271, 272, 273, 274 ],
+            "S": [ 212 ],
+            "Y": [ 325, 326, 327, 328, 329, 330, 331, 332, 333, 334 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$procmux$306": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_register.sv:31.18-31.23|/work/rtl/sar_register.sv:31.14-42.8"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 325, 326, 327, 328, 329, 330, 331, 332, 333, 334 ],
+            "B": [ "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" ],
+            "S": [ 97 ],
+            "Y": [ 181, 182, 183, 184, 185, 186, 187, 188, 189, 190 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$procmux$315": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/sar_register.sv:31.18-31.23|/work/rtl/sar_register.sv:31.14-42.8"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 315, 316, 317, 318, 319, 320, 321, 322, 323, 324 ],
+            "B": [ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "S": [ 97 ],
+            "Y": [ 295, 296, 297, 298, 299, 300, 301, 302, 303, 304 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$shift$/work/rtl/sar_register.sv:0$65": {
+          "hide_name": 1,
+          "type": "$shift",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000001",
+            "B_WIDTH": "00000000000000000000000000000101",
+            "Y_WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "1" ],
+            "B": [ 215, 216, 217, 218, 219 ],
+            "Y": [ 235, 236, 237, 238, 239, 240, 241, 242, 243, 244 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$shift$/work/rtl/sar_register.sv:0$69": {
+          "hide_name": 1,
+          "type": "$shift",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000001",
+            "B_WIDTH": "00000000000000000000000000000101",
+            "Y_WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 22 ],
+            "B": [ 220, 221, 222, 223, 224 ],
+            "Y": [ 255, 256, 257, 258, 259, 260, 261, 262, 263, 264 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$shift$/work/rtl/sar_register.sv:0$76": {
+          "hide_name": 1,
+          "type": "$shift",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000001",
+            "B_WIDTH": "00000000000000000000000000000101",
+            "Y_WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "1" ],
+            "B": [ 225, 226, 227, 228, 229 ],
+            "Y": [ 245, 246, 247, 248, 249, 250, 251, 252, 253, 254 ]
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$shift$/work/rtl/sar_register.sv:0$80": {
+          "hide_name": 1,
+          "type": "$shift",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000001",
+            "B_WIDTH": "00000000000000000000000000000101",
+            "Y_WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "1" ],
+            "B": [ 230, 231, 232, 233, 234 ],
+            "Y": [ 275, 276, 277, 278, 279, 280, 281, 282, 283, 284 ]
+          }
+        },
+        "$flatten\\u_spi.$add$/work/rtl/spi_slave.sv:108$15": {
+          "hide_name": 1,
+          "type": "$add",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000101",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000101",
+            "Y_WIDTH": "00000000000000000000000000000101"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:108.22-108.40"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 335, 336, 337, 338, 339 ],
+            "B": [ "1", "0", "0", "0", "0" ],
+            "Y": [ 340, 341, 342, 343, 344 ]
+          }
+        },
+        "$flatten\\u_spi.$auto$proc_dff.cc:220:proc_dff$383": {
+          "hide_name": 1,
+          "type": "$not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 3 ],
+            "Y": [ 345 ]
+          }
+        },
+        "$flatten\\u_spi.$auto$proc_dff.cc:220:proc_dff$398": {
+          "hide_name": 1,
+          "type": "$not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 3 ],
+            "Y": [ 346 ]
+          }
+        },
+        "$flatten\\u_spi.$auto$proc_dff.cc:220:proc_dff$403": {
+          "hide_name": 1,
+          "type": "$not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 3 ],
+            "Y": [ 347 ]
+          }
+        },
+        "$flatten\\u_spi.$auto$proc_dff.cc:220:proc_dff$408": {
+          "hide_name": 1,
+          "type": "$not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 3 ],
+            "Y": [ 348 ]
+          }
+        },
+        "$flatten\\u_spi.$auto$proc_dff.cc:225:proc_dff$385": {
+          "hide_name": 1,
+          "type": "$reduce_or",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 345, 5 ],
+            "Y": [ 349 ]
+          }
+        },
+        "$flatten\\u_spi.$auto$proc_dff.cc:225:proc_dff$400": {
+          "hide_name": 1,
+          "type": "$reduce_or",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 346, 5 ],
+            "Y": [ 350 ]
+          }
+        },
+        "$flatten\\u_spi.$auto$proc_dff.cc:225:proc_dff$405": {
+          "hide_name": 1,
+          "type": "$reduce_or",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 347, 5 ],
+            "Y": [ 351 ]
+          }
+        },
+        "$flatten\\u_spi.$auto$proc_dff.cc:225:proc_dff$410": {
+          "hide_name": 1,
+          "type": "$reduce_or",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 348, 5 ],
+            "Y": [ 352 ]
+          }
+        },
+        "$flatten\\u_spi.$eq$/work/rtl/spi_slave.sv:112$16": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000101",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000101",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:112.11-112.30"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 335, 336, 337, 338, 339 ],
+            "B": [ "1", "0", "1", "0", "0" ],
+            "Y": [ 353 ]
+          }
+        },
+        "$flatten\\u_spi.$eq$/work/rtl/spi_slave.sv:130$24": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000101",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000101",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:130.11-130.30"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 335, 336, 337, 338, 339 ],
+            "B": [ "1", "0", "1", "0", "0" ],
+            "Y": [ 354 ]
+          }
+        },
+        "$flatten\\u_spi.$eq$/work/rtl/spi_slave.sv:148$32": {
+          "hide_name": 1,
+          "type": "$eq",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000101",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000101",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:148.11-148.30"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 335, 336, 337, 338, 339 ],
+            "B": [ "1", "0", "0", "0", "0" ],
+            "Y": [ 355 ]
+          }
+        },
+        "$flatten\\u_spi.$eq$/work/rtl/spi_slave.sv:161$33": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000101",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:161.22-161.41"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 335, 336, 337, 338, 339 ],
+            "Y": [ 356 ]
+          }
+        },
+        "$flatten\\u_spi.$logic_and$/work/rtl/spi_slave.sv:113$17": {
+          "hide_name": 1,
+          "type": "$logic_and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:113.13-113.37"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 357 ],
+            "B": [ 358 ],
+            "Y": [ 359 ]
+          }
+        },
+        "$flatten\\u_spi.$logic_and$/work/rtl/spi_slave.sv:113$18": {
+          "hide_name": 1,
+          "type": "$logic_and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:113.13-113.57"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 359 ],
+            "B": [ 6 ],
+            "Y": [ 360 ]
+          }
+        },
+        "$flatten\\u_spi.$logic_and$/work/rtl/spi_slave.sv:117$20": {
+          "hide_name": 1,
+          "type": "$logic_and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:117.22-117.47"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 357 ],
+            "B": [ 361 ],
+            "Y": [ 362 ]
+          }
+        },
+        "$flatten\\u_spi.$logic_and$/work/rtl/spi_slave.sv:131$25": {
+          "hide_name": 1,
+          "type": "$logic_and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:131.13-131.37"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 357 ],
+            "B": [ 358 ],
+            "Y": [ 363 ]
+          }
+        },
+        "$flatten\\u_spi.$logic_and$/work/rtl/spi_slave.sv:131$26": {
+          "hide_name": 1,
+          "type": "$logic_and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:131.13-131.57"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 363 ],
+            "B": [ 6 ],
+            "Y": [ 364 ]
+          }
+        },
+        "$flatten\\u_spi.$logic_and$/work/rtl/spi_slave.sv:131$28": {
+          "hide_name": 1,
+          "type": "$logic_and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:131.13-131.70"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 364 ],
+            "B": [ 365 ],
+            "Y": [ 366 ]
+          }
+        },
+        "$flatten\\u_spi.$logic_and$/work/rtl/spi_slave.sv:76$12": {
+          "hide_name": 1,
+          "type": "$logic_and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:76.11-76.54"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 367 ],
+            "B": [ 368 ],
+            "Y": [ 369 ]
+          }
+        },
+        "$flatten\\u_spi.$logic_not$/work/rtl/spi_slave.sv:117$19": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:117.37-117.47"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 358 ],
+            "Y": [ 361 ]
+          }
+        },
+        "$flatten\\u_spi.$logic_not$/work/rtl/spi_slave.sv:131$27": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:131.61-131.70"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 23 ],
+            "Y": [ 365 ]
+          }
+        },
+        "$flatten\\u_spi.$ne$/work/rtl/spi_slave.sv:76$10": {
+          "hide_name": 1,
+          "type": "$reduce_bool",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000101",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:76.11-76.30"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 335, 336, 337, 338, 339 ],
+            "Y": [ 367 ]
+          }
+        },
+        "$flatten\\u_spi.$ne$/work/rtl/spi_slave.sv:76$11": {
+          "hide_name": 1,
+          "type": "$ne",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000101",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000101",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:76.34-76.54"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 335, 336, 337, 338, 339 ],
+            "B": [ "0", "0", "0", "0", "1" ],
+            "Y": [ 368 ]
+          }
+        },
+        "$flatten\\u_spi.$not$/work/rtl/spi_slave.sv:133$29": {
+          "hide_name": 1,
+          "type": "$not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:133.29-133.44"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 370 ],
+            "Y": [ 371 ]
+          }
+        },
+        "$flatten\\u_spi.$or$/work/rtl/spi_slave.sv:60$5": {
+          "hide_name": 1,
+          "type": "$or",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:60.21-60.44"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 372 ],
+            "B": [ 373 ],
+            "Y": [ 39 ]
+          }
+        },
+        "$flatten\\u_spi.$procdff$357": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "0",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:173.3-195.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 374 ],
+            "Q": [ 92 ]
+          }
+        },
+        "$flatten\\u_spi.$procdff$362": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:173.3-195.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 375, 376, 377 ],
+            "Q": [ 378, 379, 380 ]
+          }
+        },
+        "$flatten\\u_spi.$procdff$367": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "0",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:173.3-195.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 370 ],
+            "Q": [ 381 ]
+          }
+        },
+        "$flatten\\u_spi.$procdff$372": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "0",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:173.3-195.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 381 ],
+            "Q": [ 382 ]
+          }
+        },
+        "$flatten\\u_spi.$procdff$377": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "0",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:173.3-195.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 382 ],
+            "Q": [ 383 ]
+          }
+        },
+        "$flatten\\u_spi.$procdff$382": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:173.3-195.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 384, 385, 386 ],
+            "Q": [ 387, 388, 389 ]
+          }
+        },
+        "$flatten\\u_spi.$procdff$387": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "0000000000000000",
+            "CLK_POLARITY": "0",
+            "WIDTH": "00000000000000000000000000010000"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:142.3-156.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 349 ],
+            "CLK": [ 4 ],
+            "D": [ 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405 ],
+            "Q": [ 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421 ]
+          }
+        },
+        "$flatten\\u_spi.$procdff$392": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "0",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:125.3-137.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 4 ],
+            "D": [ 422 ],
+            "Q": [ 370 ]
+          }
+        },
+        "$flatten\\u_spi.$procdff$397": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:125.3-137.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 4 ],
+            "D": [ 423, 424, 425 ],
+            "Q": [ 384, 385, 386 ]
+          }
+        },
+        "$flatten\\u_spi.$procdff$402": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "0000000000000000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000010000"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:96.3-122.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 350 ],
+            "CLK": [ 4 ],
+            "D": [ 6, 426, 427, 428, 358, 357, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438 ],
+            "Q": [ 426, 427, 428, 358, 357, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439 ]
+          }
+        },
+        "$flatten\\u_spi.$procdff$407": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "00000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000101"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:96.3-122.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 351 ],
+            "CLK": [ 4 ],
+            "D": [ 340, 341, 342, 343, 344 ],
+            "Q": [ 335, 336, 337, 338, 339 ]
+          }
+        },
+        "$flatten\\u_spi.$procdff$412": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "0",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:96.3-122.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 352 ],
+            "CLK": [ 4 ],
+            "D": [ 440 ],
+            "Q": [ 373 ]
+          }
+        },
+        "$flatten\\u_spi.$procdff$417": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "0",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:72.3-82.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 5 ],
+            "D": [ 441 ],
+            "Q": [ 372 ]
+          }
+        },
+        "$flatten\\u_spi.$procdff$422": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "0000000000000000",
+            "CLK_POLARITY": "0",
+            "WIDTH": "00000000000000000000000000010000"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:63.3-69.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 5 ],
+            "D": [ 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 39, 23, 38 ],
+            "Q": [ 442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455, 456, 457 ]
+          }
+        },
+        "$flatten\\u_spi.$procmux$258": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:188.11-188.42|/work/rtl/spi_slave.sv:188.7-193.10"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0" ],
+            "B": [ "1" ],
+            "S": [ 458 ],
+            "Y": [ 374 ]
+          }
+        },
+        "$flatten\\u_spi.$procmux$261": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:188.11-188.42|/work/rtl/spi_slave.sv:188.7-193.10"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 378, 379, 380 ],
+            "B": [ 387, 388, 389 ],
+            "S": [ 458 ],
+            "Y": [ 375, 376, 377 ]
+          }
+        },
+        "$flatten\\u_spi.$procmux$264": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000010000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:148.11-148.30|/work/rtl/spi_slave.sv:148.7-154.10"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420 ],
+            "B": [ "0", 442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455, 456 ],
+            "S": [ 355 ],
+            "Y": [ 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405 ]
+          }
+        },
+        "$flatten\\u_spi.$procmux$266": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:131.13-131.70|/work/rtl/spi_slave.sv:131.9-134.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 384, 385, 386 ],
+            "B": [ 426, 427, 428 ],
+            "S": [ 366 ],
+            "Y": [ 459, 460, 461 ]
+          }
+        },
+        "$flatten\\u_spi.$procmux$268": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:130.11-130.30|/work/rtl/spi_slave.sv:130.7-135.10"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 384, 385, 386 ],
+            "B": [ 459, 460, 461 ],
+            "S": [ 354 ],
+            "Y": [ 462, 463, 464 ]
+          }
+        },
+        "$flatten\\u_spi.$procmux$270": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:129.18-129.23|/work/rtl/spi_slave.sv:129.14-136.8"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 462, 463, 464 ],
+            "B": [ 384, 385, 386 ],
+            "S": [ 5 ],
+            "Y": [ 423, 424, 425 ]
+          }
+        },
+        "$flatten\\u_spi.$procmux$272": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:131.13-131.70|/work/rtl/spi_slave.sv:131.9-134.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 370 ],
+            "B": [ 371 ],
+            "S": [ 366 ],
+            "Y": [ 465 ]
+          }
+        },
+        "$flatten\\u_spi.$procmux$274": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:130.11-130.30|/work/rtl/spi_slave.sv:130.7-135.10"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 370 ],
+            "B": [ 465 ],
+            "S": [ 354 ],
+            "Y": [ 466 ]
+          }
+        },
+        "$flatten\\u_spi.$procmux$276": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:129.18-129.23|/work/rtl/spi_slave.sv:129.14-136.8"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 466 ],
+            "B": [ 370 ],
+            "S": [ 5 ],
+            "Y": [ 422 ]
+          }
+        },
+        "$flatten\\u_spi.$procmux$278": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:117.22-117.47|/work/rtl/spi_slave.sv:117.18-119.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 373 ],
+            "B": [ "1" ],
+            "S": [ 362 ],
+            "Y": [ 467 ]
+          }
+        },
+        "$flatten\\u_spi.$procmux$281": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:114.15-114.23|/work/rtl/spi_slave.sv:114.11-116.14"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 373 ],
+            "B": [ "1" ],
+            "S": [ 23 ],
+            "Y": [ 468 ]
+          }
+        },
+        "$flatten\\u_spi.$procmux$283": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:113.13-113.57|/work/rtl/spi_slave.sv:113.9-119.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 467 ],
+            "B": [ 468 ],
+            "S": [ 360 ],
+            "Y": [ 469 ]
+          }
+        },
+        "$flatten\\u_spi.$procmux$285": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:112.11-112.30|/work/rtl/spi_slave.sv:112.7-120.10"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 373 ],
+            "B": [ 469 ],
+            "S": [ 353 ],
+            "Y": [ 440 ]
+          }
+        },
+        "$flatten\\u_spi.$procmux$288": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/work/rtl/spi_slave.sv:76.11-76.54|/work/rtl/spi_slave.sv:76.7-80.10"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0" ],
+            "B": [ "1" ],
+            "S": [ 369 ],
+            "Y": [ 441 ]
+          }
+        },
+        "$flatten\\u_spi.$ternary$/work/rtl/spi_slave.sv:161$34": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:161.21-161.79"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 421 ],
+            "B": [ 457 ],
+            "S": [ 356 ],
+            "Y": [ 470 ]
+          }
+        },
+        "$flatten\\u_spi.$ternary$/work/rtl/spi_slave.sv:164$36": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:164.21-164.46"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 470 ],
+            "B": [ "z" ],
+            "S": [ 5 ],
+            "Y": [ 7 ]
+          }
+        },
+        "$flatten\\u_spi.$xor$/work/rtl/spi_slave.sv:188$39": {
+          "hide_name": 1,
+          "type": "$xor",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:188.11-188.42"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 382 ],
+            "B": [ 383 ],
+            "Y": [ 458 ]
+          }
+        },
+        "$logic_and$/work/rtl/adc_top.sv:61$4": {
+          "hide_name": 1,
+          "type": "$logic_and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:61.18-61.45"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 92 ],
+            "B": [ 471 ],
+            "Y": [ 472 ]
+          }
+        },
+        "$logic_not$/work/rtl/adc_top.sv:61$3": {
+          "hide_name": 1,
+          "type": "$logic_not",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:61.34-61.45"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 23 ],
+            "Y": [ 471 ]
+          }
+        },
+        "$procdff$327": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "src": "/work/rtl/adc_top.sv:58.3-64.6"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 473, 474, 475 ],
+            "Q": [ 9, 10, 11 ]
+          }
+        },
+        "$procmux$82": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:61.18-61.45|/work/rtl/adc_top.sv:61.14-63.8"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 9, 10, 11 ],
+            "B": [ 378, 379, 380 ],
+            "S": [ 472 ],
+            "Y": [ 473, 474, 475 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\active_channel_q[2:0]": {
+          "hide_name": 1,
+          "bits": [ 473, 474, 475 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:58.3-64.6"
+          }
+        },
+        "$flatten\\u_result_reg.$0\\channel_q[2:0]": {
+          "hide_name": 1,
+          "bits": [ 50, 51, 52 ],
+          "attributes": {
+            "src": "/work/rtl/result_register.sv:29.3-39.6"
+          }
+        },
+        "$flatten\\u_result_reg.$0\\data_q[9:0]": {
+          "hide_name": 1,
+          "bits": [ 40, 41, 42, 43, 44, 45, 46, 47, 48, 49 ],
+          "attributes": {
+            "src": "/work/rtl/result_register.sv:29.3-39.6"
+          }
+        },
+        "$flatten\\u_result_reg.$0\\valid_q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 53 ],
+          "attributes": {
+            "src": "/work/rtl/result_register.sv:29.3-39.6"
+          }
+        },
+        "$flatten\\u_sar_core.$0\\latched_result_q[9:0]": {
+          "hide_name": 1,
+          "bits": [ 73, 74, 75, 76, 77, 78, 79, 80, 81, 82 ],
+          "attributes": {
+            "src": "/work/rtl/sar_controller.sv:72.3-83.6"
+          }
+        },
+        "$flatten\\u_sar_core.$2\\clear_reg[0:0]": {
+          "hide_name": 1,
+          "bits": [ 95 ],
+          "attributes": {
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0"
+          }
+        },
+        "$flatten\\u_sar_core.$2\\state_d[3:0]": {
+          "hide_name": 1,
+          "bits": [ 88, 89, 90, 91 ],
+          "attributes": {
+            "src": "/work/rtl/sar_controller.sv:0.0-0.0"
+          }
+        },
+        "$flatten\\u_sar_core.$eq$/work/rtl/sar_controller.sv:79$44_Y": {
+          "hide_name": 1,
+          "bits": [ 68 ],
+          "attributes": {
+            "src": "/work/rtl/sar_controller.sv:79.11-79.28"
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$101_CMP": {
+          "hide_name": 1,
+          "bits": [ 87 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$116_Y": {
+          "hide_name": 1,
+          "bits": [ 93 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$119_CMP": {
+          "hide_name": 1,
+          "bits": [ 94 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$134_CMP": {
+          "hide_name": 1,
+          "bits": [ 96 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$138_CMP": {
+          "hide_name": 1,
+          "bits": [ 98 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$139_CMP": {
+          "hide_name": 1,
+          "bits": [ 99 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$140_CMP": {
+          "hide_name": 1,
+          "bits": [ 100 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$141_CMP": {
+          "hide_name": 1,
+          "bits": [ 101 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$142_CMP": {
+          "hide_name": 1,
+          "bits": [ 102 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$143_CMP": {
+          "hide_name": 1,
+          "bits": [ 103 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$144_CMP": {
+          "hide_name": 1,
+          "bits": [ 104 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$145_CMP": {
+          "hide_name": 1,
+          "bits": [ 105 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$146_CMP": {
+          "hide_name": 1,
+          "bits": [ 106 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$147_CMP": {
+          "hide_name": 1,
+          "bits": [ 107 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$148_CMP": {
+          "hide_name": 1,
+          "bits": [ 108 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$149_CMP": {
+          "hide_name": 1,
+          "bits": [ 109 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$164_CMP": {
+          "hide_name": 1,
+          "bits": [ 110 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$169_CMP": {
+          "hide_name": 1,
+          "bits": [ 111 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$170_CMP": {
+          "hide_name": 1,
+          "bits": [ 112 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$171_CMP": {
+          "hide_name": 1,
+          "bits": [ 113 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$172_CMP": {
+          "hide_name": 1,
+          "bits": [ 114 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$173_CMP": {
+          "hide_name": 1,
+          "bits": [ 115 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$174_CMP": {
+          "hide_name": 1,
+          "bits": [ 116 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$175_CMP": {
+          "hide_name": 1,
+          "bits": [ 117 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$176_CMP": {
+          "hide_name": 1,
+          "bits": [ 118 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$177_CMP": {
+          "hide_name": 1,
+          "bits": [ 119 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$181_CMP": {
+          "hide_name": 1,
+          "bits": [ 124 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$182_CMP": {
+          "hide_name": 1,
+          "bits": [ 125 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$183_CMP": {
+          "hide_name": 1,
+          "bits": [ 126 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$184_CMP": {
+          "hide_name": 1,
+          "bits": [ 127 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$185_CMP": {
+          "hide_name": 1,
+          "bits": [ 128 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$186_CMP": {
+          "hide_name": 1,
+          "bits": [ 129 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$187_CMP": {
+          "hide_name": 1,
+          "bits": [ 130 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$188_CMP": {
+          "hide_name": 1,
+          "bits": [ 131 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$189_CMP": {
+          "hide_name": 1,
+          "bits": [ 132 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$190_CMP": {
+          "hide_name": 1,
+          "bits": [ 133 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$196_CMP": {
+          "hide_name": 1,
+          "bits": [ 135 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$197_CMP": {
+          "hide_name": 1,
+          "bits": [ 136 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$198_CMP": {
+          "hide_name": 1,
+          "bits": [ 137 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$199_CMP": {
+          "hide_name": 1,
+          "bits": [ 138 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$200_CMP": {
+          "hide_name": 1,
+          "bits": [ 139 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$201_CMP": {
+          "hide_name": 1,
+          "bits": [ 140 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$202_CMP": {
+          "hide_name": 1,
+          "bits": [ 141 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$203_CMP": {
+          "hide_name": 1,
+          "bits": [ 142 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$204_CMP": {
+          "hide_name": 1,
+          "bits": [ 143 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$209_CMP": {
+          "hide_name": 1,
+          "bits": [ 148 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$210_CMP": {
+          "hide_name": 1,
+          "bits": [ 149 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$211_CMP": {
+          "hide_name": 1,
+          "bits": [ 150 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$212_CMP": {
+          "hide_name": 1,
+          "bits": [ 151 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$213_CMP": {
+          "hide_name": 1,
+          "bits": [ 152 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$214_CMP": {
+          "hide_name": 1,
+          "bits": [ 153 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$215_CMP": {
+          "hide_name": 1,
+          "bits": [ 154 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$216_CMP": {
+          "hide_name": 1,
+          "bits": [ 155 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$217_CMP": {
+          "hide_name": 1,
+          "bits": [ 156 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$218_CMP": {
+          "hide_name": 1,
+          "bits": [ 157 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$234_CMP": {
+          "hide_name": 1,
+          "bits": [ 159 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$248_CMP": {
+          "hide_name": 1,
+          "bits": [ 160 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.$procmux$98_Y": {
+          "hide_name": 1,
+          "bits": [ 83, 84, 85, 86 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$0$lookahead\\reg_q$48[9:0]$52": {
+          "hide_name": 1,
+          "bits": [ 295, 296, 297, 298, 299, 300, 301, 302, 303, 304 ],
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:28.3-43.6"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$3$lookahead\\reg_q$48[9:0]$63": {
+          "hide_name": 1,
+          "bits": [ 181, 182, 183, 184, 185, 186, 187, 188, 189, 190 ],
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:28.3-43.6"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$4$lookahead\\reg_q$48[9:0]$74": {
+          "hide_name": 1,
+          "bits": [ 315, 316, 317, 318, 319, 320, 321, 322, 323, 324 ],
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:28.3-43.6"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$and$/work/rtl/sar_register.sv:0$67_Y": {
+          "hide_name": 1,
+          "bits": [ 171, 172, 173, 174, 175, 176, 177, 178, 179, 180 ],
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$and$/work/rtl/sar_register.sv:0$78_Y": {
+          "hide_name": 1,
+          "bits": [ 201, 202, 203, 204, 205, 206, 207, 208, 209, 210 ],
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$logic_and$/work/rtl/sar_register.sv:35$61_Y": {
+          "hide_name": 1,
+          "bits": [ 212 ],
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:35.11-35.43"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$logic_and$/work/rtl/sar_register.sv:39$72_Y": {
+          "hide_name": 1,
+          "bits": [ 214 ],
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:39.11-39.45"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$lt$/work/rtl/sar_register.sv:35$60_Y": {
+          "hide_name": 1,
+          "bits": [ 211 ],
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:35.23-35.42"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$lt$/work/rtl/sar_register.sv:39$71_Y": {
+          "hide_name": 1,
+          "bits": [ 213 ],
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:39.24-39.44"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$neg$/work/rtl/sar_register.sv:0$64_Y": {
+          "hide_name": 1,
+          "bits": [ 215, 216, 217, 218, 219 ],
+          "signed": 1,
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$neg$/work/rtl/sar_register.sv:0$68_Y": {
+          "hide_name": 1,
+          "bits": [ 220, 221, 222, 223, 224 ],
+          "signed": 1,
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$neg$/work/rtl/sar_register.sv:0$75_Y": {
+          "hide_name": 1,
+          "bits": [ 225, 226, 227, 228, 229 ],
+          "signed": 1,
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$neg$/work/rtl/sar_register.sv:0$79_Y": {
+          "hide_name": 1,
+          "bits": [ 230, 231, 232, 233, 234 ],
+          "signed": 1,
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$not$/work/rtl/sar_register.sv:0$66_Y": {
+          "hide_name": 1,
+          "bits": [ 161, 162, 163, 164, 165, 166, 167, 168, 169, 170 ],
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$not$/work/rtl/sar_register.sv:0$77_Y": {
+          "hide_name": 1,
+          "bits": [ 191, 192, 193, 194, 195, 196, 197, 198, 199, 200 ],
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$or$/work/rtl/sar_register.sv:0$70_Y": {
+          "hide_name": 1,
+          "bits": [ 265, 266, 267, 268, 269, 270, 271, 272, 273, 274 ],
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$or$/work/rtl/sar_register.sv:0$81_Y": {
+          "hide_name": 1,
+          "bits": [ 285, 286, 287, 288, 289, 290, 291, 292, 293, 294 ],
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$procmux$291_Y": {
+          "hide_name": 1,
+          "bits": [ 305, 306, 307, 308, 309, 310, 311, 312, 313, 314 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$procmux$303_Y": {
+          "hide_name": 1,
+          "bits": [ 325, 326, 327, 328, 329, 330, 331, 332, 333, 334 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$shift$/work/rtl/sar_register.sv:0$65_Y": {
+          "hide_name": 1,
+          "bits": [ 235, 236, 237, 238, 239, 240, 241, 242, 243, 244 ],
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$shift$/work/rtl/sar_register.sv:0$69_Y": {
+          "hide_name": 1,
+          "bits": [ 255, 256, 257, 258, 259, 260, 261, 262, 263, 264 ],
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$shift$/work/rtl/sar_register.sv:0$76_Y": {
+          "hide_name": 1,
+          "bits": [ 245, 246, 247, 248, 249, 250, 251, 252, 253, 254 ],
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          }
+        },
+        "$flatten\\u_sar_core.\\u_sar_reg.$shift$/work/rtl/sar_register.sv:0$80_Y": {
+          "hide_name": 1,
+          "bits": [ 275, 276, 277, 278, 279, 280, 281, 282, 283, 284 ],
+          "attributes": {
+            "src": "/work/rtl/sar_register.sv:0.0-0.0"
+          }
+        },
+        "$flatten\\u_spi.$0\\abort_err_q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 441 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:72.3-82.6"
+          }
+        },
+        "$flatten\\u_spi.$0\\bit_count_q[4:0]": {
+          "hide_name": 1,
+          "bits": [ 340, 341, 342, 343, 344 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:96.3-122.6"
+          }
+        },
+        "$flatten\\u_spi.$0\\cmd_err_q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 440 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:96.3-122.6"
+          }
+        },
+        "$flatten\\u_spi.$0\\conv_channel[2:0]": {
+          "hide_name": 1,
+          "bits": [ 375, 376, 377 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:173.3-195.6"
+          }
+        },
+        "$flatten\\u_spi.$0\\conv_start[0:0]": {
+          "hide_name": 1,
+          "bits": [ 374 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:173.3-195.6"
+          }
+        },
+        "$flatten\\u_spi.$0\\req_channel_q[2:0]": {
+          "hide_name": 1,
+          "bits": [ 423, 424, 425 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:125.3-137.6"
+          }
+        },
+        "$flatten\\u_spi.$0\\start_toggle_q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 422 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:125.3-137.6"
+          }
+        },
+        "$flatten\\u_spi.$0\\tx_shift_q[15:0]": {
+          "hide_name": 1,
+          "bits": [ 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:142.3-156.6"
+          }
+        },
+        "$flatten\\u_spi.$auto$rtlil.cc:2493:Not$384": {
+          "hide_name": 1,
+          "bits": [ 345 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_spi.$auto$rtlil.cc:2493:Not$399": {
+          "hide_name": 1,
+          "bits": [ 346 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_spi.$auto$rtlil.cc:2493:Not$404": {
+          "hide_name": 1,
+          "bits": [ 347 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_spi.$auto$rtlil.cc:2493:Not$409": {
+          "hide_name": 1,
+          "bits": [ 348 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_spi.$auto$rtlil.cc:2497:ReduceOr$386": {
+          "hide_name": 1,
+          "bits": [ 349 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_spi.$auto$rtlil.cc:2497:ReduceOr$401": {
+          "hide_name": 1,
+          "bits": [ 350 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_spi.$auto$rtlil.cc:2497:ReduceOr$406": {
+          "hide_name": 1,
+          "bits": [ 351 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_spi.$auto$rtlil.cc:2497:ReduceOr$411": {
+          "hide_name": 1,
+          "bits": [ 352 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_spi.$eq$/work/rtl/spi_slave.sv:112$16_Y": {
+          "hide_name": 1,
+          "bits": [ 353 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:112.11-112.30"
+          }
+        },
+        "$flatten\\u_spi.$eq$/work/rtl/spi_slave.sv:130$24_Y": {
+          "hide_name": 1,
+          "bits": [ 354 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:130.11-130.30"
+          }
+        },
+        "$flatten\\u_spi.$eq$/work/rtl/spi_slave.sv:148$32_Y": {
+          "hide_name": 1,
+          "bits": [ 355 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:148.11-148.30"
+          }
+        },
+        "$flatten\\u_spi.$eq$/work/rtl/spi_slave.sv:161$33_Y": {
+          "hide_name": 1,
+          "bits": [ 356 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:161.22-161.41"
+          }
+        },
+        "$flatten\\u_spi.$logic_and$/work/rtl/spi_slave.sv:113$17_Y": {
+          "hide_name": 1,
+          "bits": [ 359 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:113.13-113.37"
+          }
+        },
+        "$flatten\\u_spi.$logic_and$/work/rtl/spi_slave.sv:113$18_Y": {
+          "hide_name": 1,
+          "bits": [ 360 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:113.13-113.57"
+          }
+        },
+        "$flatten\\u_spi.$logic_and$/work/rtl/spi_slave.sv:117$20_Y": {
+          "hide_name": 1,
+          "bits": [ 362 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:117.22-117.47"
+          }
+        },
+        "$flatten\\u_spi.$logic_and$/work/rtl/spi_slave.sv:131$25_Y": {
+          "hide_name": 1,
+          "bits": [ 363 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:131.13-131.37"
+          }
+        },
+        "$flatten\\u_spi.$logic_and$/work/rtl/spi_slave.sv:131$26_Y": {
+          "hide_name": 1,
+          "bits": [ 364 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:131.13-131.57"
+          }
+        },
+        "$flatten\\u_spi.$logic_and$/work/rtl/spi_slave.sv:131$28_Y": {
+          "hide_name": 1,
+          "bits": [ 366 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:131.13-131.70"
+          }
+        },
+        "$flatten\\u_spi.$logic_and$/work/rtl/spi_slave.sv:76$12_Y": {
+          "hide_name": 1,
+          "bits": [ 369 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:76.11-76.54"
+          }
+        },
+        "$flatten\\u_spi.$logic_not$/work/rtl/spi_slave.sv:117$19_Y": {
+          "hide_name": 1,
+          "bits": [ 361 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:117.37-117.47"
+          }
+        },
+        "$flatten\\u_spi.$logic_not$/work/rtl/spi_slave.sv:131$27_Y": {
+          "hide_name": 1,
+          "bits": [ 365 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:131.61-131.70"
+          }
+        },
+        "$flatten\\u_spi.$ne$/work/rtl/spi_slave.sv:76$10_Y": {
+          "hide_name": 1,
+          "bits": [ 367 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:76.11-76.30"
+          }
+        },
+        "$flatten\\u_spi.$ne$/work/rtl/spi_slave.sv:76$11_Y": {
+          "hide_name": 1,
+          "bits": [ 368 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:76.34-76.54"
+          }
+        },
+        "$flatten\\u_spi.$not$/work/rtl/spi_slave.sv:133$29_Y": {
+          "hide_name": 1,
+          "bits": [ 371 ],
+          "attributes": {
+            "src": "/work/rtl/spi_slave.sv:133.29-133.44"
+          }
+        },
+        "$flatten\\u_spi.$procmux$259_CMP": {
+          "hide_name": 1,
+          "bits": [ 458 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_spi.$procmux$266_Y": {
+          "hide_name": 1,
+          "bits": [ 459, 460, 461 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_spi.$procmux$268_Y": {
+          "hide_name": 1,
+          "bits": [ 462, 463, 464 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_spi.$procmux$272_Y": {
+          "hide_name": 1,
+          "bits": [ 465 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_spi.$procmux$274_Y": {
+          "hide_name": 1,
+          "bits": [ 466 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_spi.$procmux$278_Y": {
+          "hide_name": 1,
+          "bits": [ 467 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_spi.$procmux$281_Y": {
+          "hide_name": 1,
+          "bits": [ 468 ],
+          "attributes": {
+          }
+        },
+        "$flatten\\u_spi.$procmux$283_Y": {
+          "hide_name": 1,
+          "bits": [ 469 ],
+          "attributes": {
+          }
+        },
+        "$logic_and$/work/rtl/adc_top.sv:61$4_Y": {
+          "hide_name": 1,
+          "bits": [ 472 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:61.18-61.45"
+          }
+        },
+        "$logic_not$/work/rtl/adc_top.sv:61$3_Y": {
+          "hide_name": 1,
+          "bits": [ 471 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:61.34-61.45"
+          }
+        },
+        "busy": {
+          "hide_name": 0,
+          "bits": [ 23 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:35.35-35.39"
+          }
+        },
+        "channel_sel": {
+          "hide_name": 0,
+          "bits": [ 9, 10, 11 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:30.35-30.46"
+          }
+        },
+        "clk": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:19.35-19.38"
+          }
+        },
+        "cmp_out": {
+          "hide_name": 0,
+          "bits": [ 22 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:32.35-32.42"
+          }
+        },
+        "conv_channel_w": {
+          "hide_name": 0,
+          "bits": [ 378, 379, 380 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:45.28-45.42"
+          }
+        },
+        "conv_done": {
+          "hide_name": 0,
+          "bits": [ 24 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:36.35-36.44"
+          }
+        },
+        "conv_start_w": {
+          "hide_name": 0,
+          "bits": [ 92 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:44.28-44.40"
+          }
+        },
+        "cs_n": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:24.35-24.39"
+          }
+        },
+        "dac_code": {
+          "hide_name": 0,
+          "bits": [ 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:31.35-31.43"
+          }
+        },
+        "err_flag": {
+          "hide_name": 0,
+          "bits": [ 39 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:40.35-40.43"
+          }
+        },
+        "miso": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:26.35-26.39"
+          }
+        },
+        "mosi": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:25.35-25.39"
+          }
+        },
+        "result_channel": {
+          "hide_name": 0,
+          "bits": [ 35, 36, 37 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:38.35-38.49"
+          }
+        },
+        "result_data": {
+          "hide_name": 0,
+          "bits": [ 25, 26, 27, 28, 29, 30, 31, 32, 33, 34 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:37.35-37.46"
+          }
+        },
+        "result_valid": {
+          "hide_name": 0,
+          "bits": [ 38 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:39.35-39.47"
+          }
+        },
+        "rst_n": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:20.35-20.40"
+          }
+        },
+        "sample_en": {
+          "hide_name": 0,
+          "bits": [ 8 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:29.35-29.44"
+          }
+        },
+        "sar_result_w": {
+          "hide_name": 0,
+          "bits": [ 54, 55, 56, 57, 58, 59, 60, 61, 62, 63 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:48.28-48.40"
+          }
+        },
+        "sclk": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/work/rtl/adc_top.sv:23.35-23.39"
+          }
+        },
+        "u_sar_core.clear_reg": {
+          "hide_name": 0,
+          "bits": [ 97 ],
+          "attributes": {
+            "hdlname": "u_sar_core clear_reg",
+            "src": "/work/rtl/sar_controller.sv:45.9-45.18"
+          }
+        },
+        "u_sar_core.eval_en": {
+          "hide_name": 0,
+          "bits": [ 134 ],
+          "attributes": {
+            "hdlname": "u_sar_core eval_en",
+            "src": "/work/rtl/sar_controller.sv:48.9-48.16"
+          }
+        },
+        "u_sar_core.eval_idx": {
+          "hide_name": 0,
+          "bits": [ 120, 121, 122, 123 ],
+          "attributes": {
+            "hdlname": "u_sar_core eval_idx",
+            "src": "/work/rtl/sar_controller.sv:49.15-49.23"
+          }
+        },
+        "u_sar_core.state_d": {
+          "hide_name": 0,
+          "bits": [ 69, 70, 71, 72 ],
+          "attributes": {
+            "hdlname": "u_sar_core state_d",
+            "src": "/work/rtl/sar_controller.sv:42.24-42.31",
+            "wiretype": "\\sar_state_t"
+          }
+        },
+        "u_sar_core.state_q": {
+          "hide_name": 0,
+          "bits": [ 64, 65, 66, 67 ],
+          "attributes": {
+            "hdlname": "u_sar_core state_q",
+            "src": "/work/rtl/sar_controller.sv:42.15-42.22",
+            "wiretype": "\\sar_state_t"
+          }
+        },
+        "u_sar_core.trial_en": {
+          "hide_name": 0,
+          "bits": [ 158 ],
+          "attributes": {
+            "hdlname": "u_sar_core trial_en",
+            "src": "/work/rtl/sar_controller.sv:46.9-46.17"
+          }
+        },
+        "u_sar_core.trial_idx": {
+          "hide_name": 0,
+          "bits": [ 144, 145, 146, 147 ],
+          "attributes": {
+            "hdlname": "u_sar_core trial_idx",
+            "src": "/work/rtl/sar_controller.sv:47.15-47.24"
+          }
+        },
+        "u_spi.abort_err_q": {
+          "hide_name": 0,
+          "bits": [ 372 ],
+          "attributes": {
+            "hdlname": "u_spi abort_err_q",
+            "src": "/work/rtl/spi_slave.sv:56.28-56.39"
+          }
+        },
+        "u_spi.bit_count_q": {
+          "hide_name": 0,
+          "bits": [ 335, 336, 337, 338, 339 ],
+          "attributes": {
+            "hdlname": "u_spi bit_count_q",
+            "src": "/work/rtl/spi_slave.sv:54.28-54.39"
+          }
+        },
+        "u_spi.channel_sync_q": {
+          "hide_name": 0,
+          "bits": [ 387, 388, 389 ],
+          "attributes": {
+            "hdlname": "u_spi channel_sync_q",
+            "src": "/work/rtl/spi_slave.sv:171.28-171.42"
+          }
+        },
+        "u_spi.cmd_err_q": {
+          "hide_name": 0,
+          "bits": [ 373 ],
+          "attributes": {
+            "hdlname": "u_spi cmd_err_q",
+            "src": "/work/rtl/spi_slave.sv:55.28-55.37"
+          }
+        },
+        "u_spi.miso_bit": {
+          "hide_name": 0,
+          "bits": [ 470 ],
+          "attributes": {
+            "hdlname": "u_spi miso_bit",
+            "src": "/work/rtl/spi_slave.sv:140.9-140.17"
+          }
+        },
+        "u_spi.req_channel_q": {
+          "hide_name": 0,
+          "bits": [ 384, 385, 386 ],
+          "attributes": {
+            "hdlname": "u_spi req_channel_q",
+            "src": "/work/rtl/spi_slave.sv:58.28-58.41"
+          }
+        },
+        "u_spi.rx_shift_q": {
+          "hide_name": 0,
+          "bits": [ 426, 427, 428, 358, 357, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439 ],
+          "attributes": {
+            "hdlname": "u_spi rx_shift_q",
+            "src": "/work/rtl/spi_slave.sv:51.28-51.38",
+            "unused_bits": "15"
+          }
+        },
+        "u_spi.start_toggle_q": {
+          "hide_name": 0,
+          "bits": [ 370 ],
+          "attributes": {
+            "hdlname": "u_spi start_toggle_q",
+            "src": "/work/rtl/spi_slave.sv:57.28-57.42"
+          }
+        },
+        "u_spi.sync_toggle_q1": {
+          "hide_name": 0,
+          "bits": [ 381 ],
+          "attributes": {
+            "hdlname": "u_spi sync_toggle_q1",
+            "src": "/work/rtl/spi_slave.sv:170.9-170.23"
+          }
+        },
+        "u_spi.sync_toggle_q2": {
+          "hide_name": 0,
+          "bits": [ 382 ],
+          "attributes": {
+            "hdlname": "u_spi sync_toggle_q2",
+            "src": "/work/rtl/spi_slave.sv:170.25-170.39"
+          }
+        },
+        "u_spi.sync_toggle_q3": {
+          "hide_name": 0,
+          "bits": [ 383 ],
+          "attributes": {
+            "hdlname": "u_spi sync_toggle_q3",
+            "src": "/work/rtl/spi_slave.sv:170.41-170.55"
+          }
+        },
+        "u_spi.tx_shift_q": {
+          "hide_name": 0,
+          "bits": [ 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421 ],
+          "attributes": {
+            "hdlname": "u_spi tx_shift_q",
+            "src": "/work/rtl/spi_slave.sv:52.28-52.38"
+          }
+        },
+        "u_spi.tx_snapshot_q": {
+          "hide_name": 0,
+          "bits": [ 442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455, 456, 457 ],
+          "attributes": {
+            "hdlname": "u_spi tx_snapshot_q",
+            "src": "/work/rtl/spi_slave.sv:53.28-53.41"
+          }
+        }
+      }
+    }
+  }
+}

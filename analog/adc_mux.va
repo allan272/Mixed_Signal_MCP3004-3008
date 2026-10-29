@@ -1,0 +1,43 @@
+//=============================================================================
+// File: analog/adc_mux.va
+// Description: 8-Channel Analogue Multiplexer Behavioural Model in Verilog-A
+// Standard: Verilog-A (IEEE 1800 / LRM 2.4)
+//=============================================================================
+
+`include "disciplines.vams"
+`include "constants.vams"
+
+module adc_mux(ch0, ch1, ch2, ch3, ch4, ch5, ch6, ch7, sel, out, agnd);
+  inout ch0, ch1, ch2, ch3, ch4, ch5, ch6, ch7;
+  input [2:0] sel;
+  inout out, agnd;
+  electrical ch0, ch1, ch2, ch3, ch4, ch5, ch6, ch7, out, agnd;
+  electrical [2:0] sel;
+
+  parameter real ron  = 100.0; // Switch ON resistance (Ohms)
+  parameter real roff = 1e9;   // Switch OFF resistance (Ohms)
+  parameter real vth  = 2.5;   // Digital logic threshold (V)
+
+  integer sel_code;
+  real r_eff[0:7];
+  genvar i;
+
+  analog begin
+    // Decode 3-bit digital selection vector
+    sel_code = (V(sel[2]) > vth ? 4 : 0) +
+               (V(sel[1]) > vth ? 2 : 0) +
+               (V(sel[0]) > vth ? 1 : 0);
+
+    // Dynamic resistance calculation for each transmission gate
+    I(ch0, out) <+ V(ch0, out) / ((sel_code == 0) ? ron : roff);
+    I(ch1, out) <+ V(ch1, out) / ((sel_code == 1) ? ron : roff);
+    I(ch2, out) <+ V(ch2, out) / ((sel_code == 2) ? ron : roff);
+    I(ch3, out) <+ V(ch3, out) / ((sel_code == 3) ? ron : roff);
+    I(ch4, out) <+ V(ch4, out) / ((sel_code == 4) ? ron : roff);
+    I(ch5, out) <+ V(ch5, out) / ((sel_code == 5) ? ron : roff);
+    I(ch6, out) <+ V(ch6, out) / ((sel_code == 6) ? ron : roff);
+    I(ch7, out) <+ V(ch7, out) / ((sel_code == 7) ? ron : roff);
+  end
+
+endmodule
+

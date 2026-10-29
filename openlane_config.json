@@ -1,0 +1,21 @@
+{
+  "DESIGN_NAME": "adc_top",
+  "VERILOG_FILES": [
+    "dir::rtl/adc_config.sv",
+    "dir::rtl/sar_register.sv",
+    "dir::rtl/sar_controller.sv",
+    "dir::rtl/result_register.sv",
+    "dir::rtl/spi_slave.sv",
+    "dir::rtl/adc_top.sv"
+  ],
+  "VERILOG_INCLUDE_DIRS": [
+    "dir::rtl"
+  ],
+  "CLOCK_PORT": "clk",
+  "CLOCK_PERIOD": 20.0,
+  "FP_SIZING": "relative",
+  "FP_CORE_UTIL": 40,
+  "PL_TARGET_DENSITY_PCT": 50,
+  "PRIMARY_GDSII_STREAMOUT_TOOL": "magic"
+}
+

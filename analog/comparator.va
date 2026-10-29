@@ -1,0 +1,39 @@
+//=============================================================================
+// File: analog/comparator.va
+// Description: Behavioural Differential Comparator Model in Verilog-A
+// Decision: cmp_out = (V(vin_p) >= V(vin_n) + v_offset) ? 5.0V : 0.0V
+// Standard: Verilog-A (IEEE 1800 / LRM 2.4)
+//=============================================================================
+
+`include "disciplines.vams"
+`include "constants.vams"
+
+module comparator(vin_p, vin_n, vdd, vss, cmp_out);
+  input vin_p, vin_n, vdd, vss;
+  output cmp_out;
+  electrical vin_p, vin_n, vdd, vss, cmp_out;
+
+  parameter real v_offset   = 0.0;    // Input-referred offset voltage (V)
+  parameter real gain       = 10000.0;// Finite open-loop gain
+  parameter real t_prop     = 1.0e-9; // Propagation delay (1 ns)
+  parameter real vth_decision = 0.0;  // Differential threshold
+
+  real v_diff;
+  real v_out_target;
+
+  analog begin
+    v_diff = V(vin_p, vin_n) - v_offset;
+
+    // Strict equality and threshold evaluation
+    if (v_diff >= vth_decision) begin
+      v_out_target = V(vdd, vss);
+    end else begin
+      v_out_target = 0.0;
+    end
+
+    // Slew and delay modeled through transition filter
+    V(cmp_out, vss) <+ transition(v_out_target, t_prop, 0.5e-9, 0.5e-9);
+  end
+
+endmodule
+
